@@ -1,0 +1,106 @@
+{
+  "type": "docker-standalone",
+  "id": "minecraft-bedrock-itzg",
+  "display": "Minecraft (Bedrock) - ITZG",
+  "description": "Runs a Minecraft Bedrock Edition server using the popular itzg/docker-minecraft-bedrock-server image.",
+  "author": "itzg@example.com",
+  "version": "1.0.0",
+  "install": [
+    {
+      "type": "docker-pull",
+      "image": "{{image}}"
+    }
+  ],
+  "data": {
+    "image": {
+      "display": "Docker Image",
+      "description": "The Docker image to use for the server. The `latest` tag will stay up to date automatically.",
+      "value": "itzg/docker-minecraft-bedrock-server:latest",
+      "required": true,
+      "type": "string"
+    },
+    "serverName": {
+      "display": "Server Name",
+      "description": "The name of the server displayed in the server list.",
+      "value": "My Bedrock Server",
+      "required": true,
+      "type": "string"
+    },
+    "gameMode": {
+      "display": "Game Mode",
+      "description": "The default game mode for new players.",
+      "value": "survival",
+      "required": true,
+      "type": "select",
+      "options": [
+        {
+          "value": "survival",
+          "display": "Survival"
+        },
+        {
+          "value": "creative",
+          "display": "Creative"
+        },
+        {
+          "value": "adventure",
+          "display": "Adventure"
+        }
+      ]
+    },
+    "difficulty": {
+      "display": "Difficulty",
+      "description": "The game difficulty.",
+      "value": "normal",
+      "required": true,
+      "type": "select",
+      "options": [
+        {
+          "value": "peaceful",
+          "display": "Peaceful"
+        },
+        {
+          "value": "easy",
+          "display": "Easy"
+        },
+        {
+          "value": "normal",
+          "display": "Normal"
+        },
+        {
+          "value": "hard",
+          "display": "Hard"
+        }
+      ]
+    },
+    "maxPlayers": {
+      "display": "Max Players",
+      "description": "The maximum number of players that can join the server.",
+      "value": 10,
+      "required": true,
+      "type": "integer"
+    },
+    "whiteList": {
+      "display": "Enable Whitelist",
+      "description": "If enabled, only players on the whitelist can join.",
+      "value": false,
+      "required": true,
+      "type": "boolean"
+    }
+  },
+  "run": {
+    "stop": "stop",
+    "workingDirectory": "/data",
+    "ports": {
+      "19132/udp": "{{server.allocations.default.port}}"
+    },
+    "environmentVars": {
+      "EULA": "TRUE",
+      "SERVER_NAME": "{{serverName}}",
+      "GAMEMODE": "{{gameMode}}",
+      "DIFFICULTY": "{{difficulty}}",
+      "MAX_PLAYERS": "{{maxPlayers}}",
+      "WHITE_LIST": "{{whiteList}}",
+      "ONLINE_MODE": "true"
+    }
+  }
+}
