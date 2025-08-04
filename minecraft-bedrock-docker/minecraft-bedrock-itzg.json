@@ -4,7 +4,7 @@
   "display": "Minecraft (Bedrock) - ITZG",
   "description": "Runs a Minecraft Bedrock Edition server using the popular itzg/docker-minecraft-bedrock-server image.",
   "author": "itzg@example.com",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "install": [
     {
       "type": "docker-pull",
@@ -88,6 +88,9 @@
     }
   },
   "run": {
+    "command": [
+      "/start.sh"
+    ],
     "stop": "stop",
     "workingDirectory": "/data",
     "ports": {
@@ -99,7 +102,7 @@
       "GAMEMODE": "{{gameMode}}",
       "DIFFICULTY": "{{difficulty}}",
       "MAX_PLAYERS": "{{maxPlayers}}",
-      "WHITE_LIST": "{{whiteList}}",
+      "WHITELIST_ENABLED": "{{whiteList}}",
       "ONLINE_MODE": "true"
     }
   }
