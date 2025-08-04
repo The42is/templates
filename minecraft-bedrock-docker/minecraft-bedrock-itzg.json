@@ -4,7 +4,7 @@
   "display": "Minecraft (Bedrock) - ITZG",
   "description": "Runs a Minecraft Bedrock Edition server using the popular itzg/docker-minecraft-bedrock-server image.",
   "author": "itzg@example.com",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "install": [
     {
       "type": "docker-pull",
